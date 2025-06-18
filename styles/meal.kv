@@ -1,0 +1,57 @@
+<MealScreen>:
+    BoxLayout:
+        padding: [20, 20, 20, 80]
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 0, 0.671, 0.255, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        ScrollView:
+            BoxLayout:
+                id: scroll_layout
+                orientation: 'vertical'
+                spacing: 20
+                size_hint_y: None
+                height: self.minimum_height
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 50
+
+            Label:
+                bold: True
+                id: total_calories
+                text: "Calories: 0"
+                font_size: 30
+                color: 1, 1, 1, 1
+                halign: 'right'
+                valign: 'middle'
+                size_hint_x: 1
+                text_size: self.size
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 50
+            spacing: 10
+
+            Button:
+                text: "Back to camera"
+                font_size: 18
+                bold: True
+                color: 1, 1, 1, 1
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0.4, 0, 1  # dark green
+                on_press: root.go_back(self)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15, 15, 15, 15]

@@ -1,0 +1,94 @@
+<MealItem>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: 140
+    padding: [20, 10, 20, 10]
+    spacing: 10
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Line:
+            width: 1
+            rounded_rectangle: (self.x, self.y, self.width, self.height, 20)
+
+    FloatLayout:
+        size_hint: None, None
+        width: self.height
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        canvas.before:
+            StencilPush
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [20, 20, 20, 20]
+            StencilUse
+            
+        canvas.after:
+            StencilUnUse
+            StencilPop
+            Color:
+                rgba: 0, 0, 0, 0
+            Line:
+                width: 0.5
+                rounded_rectangle: (self.x, self.y, self.width, self.height, 10)
+        Image:
+            id: image
+            size: self.parent.size
+            pos: self.parent.pos
+            allow_stretch: True
+            keep_ratio: True
+
+    FloatLayout:
+        Label:
+            id: name
+            font_size: 30
+            bold: True
+            size_hint: 0.5, 0.3
+            pos_hint: {'x': 0, 'y': 0.7}
+            halign: 'left'
+            valign: 'middle'
+            text_size: self.size
+            color: 1, 1, 1, 1
+
+        Label:
+            id: cal
+            font_size: 20
+            size_hint: 0.4, 0.2
+            pos_hint: {'x': 0, 'y': 0.4}
+            halign: 'left'
+            valign: 'middle'
+            text_size: self.size
+            color: 1, 1, 1, 1
+
+        Label:
+            id: grams
+            font_size: 22
+            size_hint: 0.3, 0.3
+            pos_hint: {'right': 1, 'y': 0.7}
+            halign: 'right'
+            valign: 'middle'
+            text_size: self.size
+            color: 1, 1, 1, 1
+
+        Label:
+            id: curr_cal
+            font_size: 30
+            bold: True
+            size_hint: 0.3, 0.2
+            pos_hint: {'right': 1, 'y': 0.1}
+            halign: 'right'
+            valign: 'middle'
+            text_size: self.size
+            color: 1, 1, 1, 1
+
+    Button:
+        id: delete_btn
+        text: "x"
+        bold: True
+        size_hint: None, None
+        size: 24, 24
+        background_normal: ""
+        background_down: ""
+        background_color: 0, 0, 0, 0
+        pos_hint: {'right': 1, 'center_y': 0.5}
+        color: 1, 1, 1, 1

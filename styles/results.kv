@@ -1,0 +1,81 @@
+<ResultScreen>:
+    BoxLayout:
+        padding: [20, 20, 20, 80]
+        canvas.before:
+            Color:
+                rgba: 0, 0.671, 0.255, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        orientation: 'vertical'
+        spacing: 10
+
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: result_label
+                font_size: 30
+                color: 1, 1, 1, 1
+
+            TextInput:
+                id: grams_input
+                hint_text: "Enter grams you ate"
+                multiline: False
+                input_filter: "int"
+                size_hint_y: None
+                height: 40
+                font_size: 18
+                foreground_color: 0, 0, 0, 1
+                background_color: 1, 1, 1, 1
+                padding: [10, 10, 10, 10]
+                cursor_color: 0, 0.6, 0.2, 1
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            size_hint_y: None
+            height: 50
+
+            Button:
+                id: back_button
+                text: "Back to Camera"
+                font_size: 18
+                bold: True
+                color: 1, 1, 1, 1
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0.4, 0, 1
+                on_press:
+                    self.background_color = 0, 0.3, 0.2, 1
+                    root.go_back(self)
+                on_release:
+                    self.background_color = 0, 0.4, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15, 15, 15, 15]
+
+            Button:
+                id: meal_button
+                text: "See your meal"
+                font_size: 18
+                bold: True
+                color: 1, 1, 1, 1
+                background_normal: ""
+                background_down: ""
+                background_color: 0, 0.5, 1, 1
+                on_press:
+                    self.background_color = 0, 0.3, 0.7, 1
+                    root.to_meal(self)
+                on_release:
+                    self.background_color = 0, 0.5, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [15, 15, 15, 15]

@@ -1,0 +1,65 @@
+<CameraScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [0, 0, 0, 40]
+        canvas.before:
+            Color:
+                rgba: 0, 0.671, 0.255, 1 
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        FloatLayout:
+            size_hint_y: 0.9
+
+            FloatLayout:
+                size_hint: None, None
+                width: min(self.parent.width, self.parent.height * 0.8)
+                height: self.width
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                canvas.before:
+                    StencilPush
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20, 20, 20, 20]
+                    StencilUse
+
+                canvas.after:
+                    StencilUnUse
+                    StencilPop
+                    Color:
+                        rgba: 0, 0, 0, 0
+                    Line:
+                        width: 2
+                        rounded_rectangle: (self.x, self.y, self.width, self.height, 20)
+
+                Image:
+                    id: image_widget
+                    size: self.parent.size
+                    pos: self.parent.pos
+                    allow_stretch: True
+                    keep_ratio: True
+
+        Button:
+            size_hint: None, None
+            size: 100, 100
+            pos_hint: {"center_x": 0.5}
+            background_normal: ""
+            background_color: 0, 0, 0, 0
+            on_press: 
+                root.capture_image(self)
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                RoundedRectangle:
+                    pos: self.x - 2, self.y - 2
+                    size: self.width + 4, self.height + 4
+                    radius: [50, 50, 50, 50]
+                Color:
+                    rgba: 1, 1, 1, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [50, 50, 50, 50]
